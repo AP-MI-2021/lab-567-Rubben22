@@ -6,7 +6,7 @@ def creeazaRezervare(id, nume, clasa, pret, checkin):
     :param clasa: nume clasa: economy, economy plus, business - string
     :param pret: pretul rezervarii - float
     :param checkin: da sau nu - string
-    :return: un dictionar ce contine o prajitura
+    :return: un dictionar ce contine o rezervare
     """
     return {
         "id": id,
@@ -19,7 +19,7 @@ def creeazaRezervare(id, nume, clasa, pret, checkin):
 
 def getId(rezervare):
     """
-    Returneaza id-ul unei prajituri
+    Returneaza id-ul unei rezervari
     :param rezervare: un dicitonar de tip rezervare
     :return: id-ul rezervarii - string
     """
