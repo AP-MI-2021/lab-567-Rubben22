@@ -1,4 +1,4 @@
-from Domain.rezervare import creeazaRezervare, getId, getClasa
+from Domain.rezervare import creeazaRezervare, getId
 
 
 def adaugaRezervare(id, nume, clasa, pret, checkin, lista):
@@ -17,17 +17,17 @@ def adaugaRezervare(id, nume, clasa, pret, checkin, lista):
 
 
 def stergeRezervare(id, lista):
-    '''
+    """
     sterge o rezervare dupa id-ul dintr-o lista
     :param id: id-ul rezervarii de sters, string
     :param lista: lista de rezervari
     :return: o lista continand prajiturile cu id-ul diferit de id
-    '''
+    """
     return [rezervare for rezervare in lista if getId(rezervare) != id]
 
 
 def modificaRezervare(id, nume, clasa, pret, checkin, lista):
-    '''
+    """
     Modifica o rezervare dintr-o lista
     :param id: string
     :param nume: string
@@ -36,7 +36,7 @@ def modificaRezervare(id, nume, clasa, pret, checkin, lista):
     :param checkin: string
     :param lista: lista de rezervari
     :return: o lista care contine rezervarile vechi cat si cele modificate
-    '''
+    """
     listaNoua = []
     for rezervare in lista:
         if getId(rezervare) == id:
@@ -46,13 +46,14 @@ def modificaRezervare(id, nume, clasa, pret, checkin, lista):
             listaNoua.append(rezervare)
     return listaNoua
 
-def getById(id, lista):
-    '''
 
-    :param id:
-    :param lista:
-    :return:
-    '''
+def getById(id, lista):
+    """
+    Gaseste o rezervare cu id-ul dat intr-o lista
+    :param id: string
+    :param lista: lista cu rezervari
+    :return: rezervarea cu id-ul dat din lista sau None daca nu exista
+    """
     for rezervare in lista:
         if getId(rezervare) == id:
             return rezervare

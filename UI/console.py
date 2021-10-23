@@ -20,9 +20,11 @@ def uiAdaugaRezervare(lista):
     checkin = input("Checkin: ")
     return adaugaRezervare(id, nume, clasa, pret, checkin, lista)
 
+
 def uiStergeRezervare(lista):
     id = input("Dati id-ul rezervarii de sters ")
     return stergeRezervare(id, lista)
+
 
 def uiModificaRezervare(lista):
     id = input("Dati id-ul rezervarii de modificat: ")
@@ -32,14 +34,17 @@ def uiModificaRezervare(lista):
     checkin = input("Checkin: ")
     return modificaRezervare(id, nume, clasa, pret, checkin, lista)
 
+
 def showAll(lista):
     for rezervare in lista:
         print(toString(rezervare))
+
 
 def uiSchimbareClasaDupaStringNume(lista):
     substringNume = input("Dati substringul numelui: ")
     clasa = "business"
     return schimbareClasaDupaStringNume(substringNume, clasa, lista)
+
 
 def runMenu(lista):
     while True:
@@ -59,4 +64,3 @@ def runMenu(lista):
             break
         else:
             print("Optiune gresita! Reincercati ")
-

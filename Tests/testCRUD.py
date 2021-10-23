@@ -1,6 +1,5 @@
 from Domain.rezervare import getId, getNume, getClasa, getPret, getCheckin
 from Logic.CRUD import adaugaRezervare, stergeRezervare, getById
-from Logic.functionalitati import schimbareClasaDupaStringNume
 
 
 def testAdaugaRezervare():
@@ -13,6 +12,7 @@ def testAdaugaRezervare():
     assert getPret(getById("1", lista)) == 250
     assert getCheckin(getById("1", lista)) == "da"
 
+
 def testStergeRezervare():
     lista = adaugaRezervare("1", "Ruben", "economy", 150, "da", [])
     lista = adaugaRezervare("2", "Carmen", "economy plus", 100, "nu", lista)
@@ -24,11 +24,3 @@ def testStergeRezervare():
     lista = stergeRezervare("3", lista)
     assert len(lista) == 1
     assert getById("2", lista) is not None
-
-"""def test_schimbareClasaDupaStringNume():
-    lista = adaugaRezervare("1", "Ruben", "economy", 150, "da", [])
-    lista = adaugaRezervare("2", "Carmen", "economy plus", 100, "nu", lista)
-    
-    substring_nume = "Ruben"
-    assert schimbareClasaDupaStringNume():"""
-
