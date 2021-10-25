@@ -8,13 +8,7 @@ def creeazaRezervare(id, nume, clasa, pret, checkin):
     :param checkin: da sau nu - string
     :return: un dictionar ce contine o rezervare
     """
-    return {
-        "id": id,
-        "nume": nume,
-        "clasa": clasa,
-        "pret": pret,
-        "checkin": checkin
-    }
+    return [id, nume, clasa, pret, checkin]
 
 
 def getId(rezervare):
@@ -23,23 +17,23 @@ def getId(rezervare):
     :param rezervare: un dicitonar de tip rezervare
     :return: id-ul rezervarii - string
     """
-    return rezervare["id"]
+    return rezervare[0]
 
 
 def getNume(rezervare):
-    return rezervare["nume"]
+    return rezervare[1]
 
 
 def getClasa(rezervare):
-    return rezervare["clasa"]
+    return rezervare[2]
 
 
 def getPret(rezervare):
-    return rezervare["pret"]
+    return rezervare[3]
 
 
 def getCheckin(rezervare):
-    return rezervare["checkin"]
+    return rezervare[4]
 
 
 def toString(rezervare):
