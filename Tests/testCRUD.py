@@ -9,7 +9,7 @@ def testAdaugaRezervare():
     assert getId(getById("1", lista)) == "1"
     assert getNume(getById("1", lista)) == "Ruben"
     assert getClasa(getById("1", lista)) == "economy"
-    assert getPret(getById("1", lista)) == 250
+    assert getPret(getById("1", lista)) == 150
     assert getCheckin(getById("1", lista)) == "da"
 
 
@@ -20,10 +20,15 @@ def testStergeRezervare():
     lista = stergeRezervare("1", lista)
     assert len(lista) == 1
     assert getById("1", lista) is None
+    try:
+        lista = stergeRezervare("3", lista)
+        assert False
+    except ValueError:
+        assert len(lista) == 1
+        assert getById("2", lista) is not None
+    except Exception:
+        assert False
 
-    lista = stergeRezervare("3", lista)
-    assert len(lista) == 1
-    assert getById("2", lista) is not None
 
 def testModificaRezervare():
     lista = []
@@ -39,6 +44,28 @@ def testModificaRezervare():
     assert getPret(rezervareUpdatata) == 260
     assert getCheckin(rezervareUpdatata) == "nu"
 
+    rezervareNeUpdatata = getById("2", lista)
+    assert getId(rezervareNeUpdatata) == "2"
+    assert getNume(rezervareNeUpdatata) == "Carmen"
+    assert getClasa(rezervareNeUpdatata) == "economy plus"
+    assert getPret(rezervareNeUpdatata) == 100
+    assert getCheckin(rezervareNeUpdatata) == "nu"
+
+    lista = []
+    lista = adaugaRezervare("2", "Carmen", "economy plus", 100, "nu", lista)
+    try:
+        lista = modificaRezervare("1", "Mihai", "business", 260, "nu", lista)
+    except ValueError:
+        rezervareNeUpdatata = getById("2", lista)
+        assert getId(rezervareNeUpdatata) == "2"
+        assert getNume(rezervareNeUpdatata) == "Carmen"
+        assert getClasa(rezervareNeUpdatata) == "economy plus"
+        assert getPret(rezervareNeUpdatata) == 100
+        assert getCheckin(rezervareNeUpdatata) == "nu"
+    except Exception:
+        assert False
+
+
 def testGetById():
     lista = []
     lista = adaugaRezervare("1", "Carmen", "economy plus", 100, "nu", lista)
@@ -48,4 +75,3 @@ def testGetById():
     assert getClasa(getById("1", lista)) == "economy plus"
     assert getPret(getById("1", lista)) == 100
     assert getCheckin(getById("1", lista)) == "nu"
-
