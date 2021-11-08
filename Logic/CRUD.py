@@ -17,6 +17,26 @@ def adaugaRezervare(id, nume, clasa, pret, checkin, lista):
     rezervare = creeazaRezervare(id, nume, clasa, pret, checkin)
     return lista + [rezervare]
 
+def adaugaRezervareUndoRedo(id, nume, clasa, pret, checkin, lista, undoList, redoList):
+    """
+    
+    :param id: 
+    :param nume: 
+    :param clasa: 
+    :param pret: 
+    :param checkin: 
+    :param lista: 
+    :param undoList: 
+    :param redoList: 
+    :return: 
+    """
+    if getById(id, lista) is not None:
+        raise ValueError("Id-ul exista deja! ")
+    rezervare = creeazaRezervare(id, nume, clasa, pret, checkin)
+    undoList.append(lista)
+    redoList.clear()
+    return lista + [rezervare]
+
 
 def stergeRezervare(id, lista):
     """
