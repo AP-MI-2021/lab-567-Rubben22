@@ -102,6 +102,7 @@ def uiOrdonareDescrescatorDupaPret(lista, undoList, redoList):
     rezultat = ordonareDescrescatorDupaPret(lista)
     undoList.append(lista)
     redoList.clear()
+
     showAll(rezultat)
 
 

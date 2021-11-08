@@ -1,4 +1,4 @@
-from Domain.rezervare import creeazaRezervare, toString
+from Domain.rezervare import toString
 from Logic.CRUD import stergeRezervare, adaugaRezervare
 
 
@@ -12,8 +12,30 @@ def meniu():
     print("showall")
     print("iesire")
 
+def uiAdaugaRezervare2(lista, listacuvinte):
+    try:
+        id = listacuvinte[0]
+        nume = listacuvinte[1]
+        clasa = listacuvinte[2]
+        pret = listacuvinte[3]
+        checkin = listacuvinte[4]
+        rezultat = adaugaRezervare(id, nume, clasa, pret, checkin, lista)
+        return rezultat
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
+
+def uiStergeRezervare2(id, lista):
+    try:
+        rezultat = stergeRezervare(id, lista)
+        return rezultat
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
+
 
 def command(listaNoua):
+    listacuvinte = []
     while True:
         optiune = input("Dati comenzile: ")
         if optiune == "ajutor":
@@ -27,20 +49,17 @@ def command(listaNoua):
                 for rezervare in cuvinte:
                     cuvant = rezervare.split(",")
                     if cuvant[0] == "add":
-                        try:
-                            id = cuvant[1]
-                            nume = cuvant[2]
-                            clasa = cuvant[3]
-                            pret = float(cuvant[4])
-                            checkin = cuvant[5]
-                            listaNoua = adaugaRezervare(id, nume, clasa, pret, checkin, listaNoua)
-                        except ValueError as ve:
-                            print("Eroare: {}".format(ve))
-                            return listaNoua
+                        id = cuvant[1]
+                        nume = cuvant[2]
+                        clasa = cuvant[3]
+                        pret = float(cuvant[4])
+                        checkin = cuvant[5]
+                        listacuvinte = [id, nume, clasa, pret, checkin]
+                        listaNoua = uiAdaugaRezervare2(listaNoua, listacuvinte)
                     elif cuvant[0] == 'delete':
                         try:
                             id = cuvant[1]
-                            listaNoua= stergeRezervare(id, listaNoua)
+                            listaNoua= uiStergeRezervare2(id, listaNoua)
                         except ValueError as ve:
                             print("Eroare: {}".format(ve))
                             return listaNoua
