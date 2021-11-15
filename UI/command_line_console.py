@@ -37,7 +37,7 @@ def uiStergeRezervare2(id, lista):
 def command(listaNoua):
     listacuvinte = []
     while True:
-        optiune = input("Dati comenzile: ")
+        optiune = input("Dati comenzile sau scrieti 'ajutor' pentru a vedea comenzile: ")
         if optiune == "ajutor":
             meniu()
         else:
@@ -49,13 +49,16 @@ def command(listaNoua):
                 for rezervare in cuvinte:
                     cuvant = rezervare.split(",")
                     if cuvant[0] == "add":
-                        id = cuvant[1]
-                        nume = cuvant[2]
-                        clasa = cuvant[3]
-                        pret = float(cuvant[4])
-                        checkin = cuvant[5]
-                        listacuvinte = [id, nume, clasa, pret, checkin]
-                        listaNoua = uiAdaugaRezervare2(listaNoua, listacuvinte)
+                        try:
+                            id = cuvant[1]
+                            nume = cuvant[2]
+                            clasa = cuvant[3]
+                            pret = float(cuvant[4])
+                            checkin = cuvant[5]
+                            listacuvinte = [id, nume, clasa, pret, checkin]
+                            listaNoua = uiAdaugaRezervare2(listaNoua, listacuvinte)
+                        except ValueError as ve:
+                            print("Eroare: {}".format(ve))
                     elif cuvant[0] == 'delete':
                         try:
                             id = cuvant[1]
